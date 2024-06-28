@@ -18,6 +18,7 @@ def main(page: ft.Page):
     page.window_height = 300
     page.window_resizable = False
     page.window_maximizable = False
+    
     def close_banner(e):
         page.banner.open = False
         page.update()
