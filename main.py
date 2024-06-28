@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 import flet as ft
 files = []
 for file in os.listdir():
-    if file == 'main.py' or file == 'chave.key':
+    if file == 'main.py' or file == 'chave.key' or file == 'README.md':
         continue
     if os.path.isfile(file):
         files.append(file)
@@ -14,7 +14,7 @@ for file in os.listdir():
 def main(page: ft.Page):
     page.window_center()
     page.title = 'Ransoware-Malware'
-    page.window_width = 400
+    page.window_width = 350
     page.window_height = 300
     page.window_resizable = False
     page.window_maximizable = False
@@ -43,7 +43,7 @@ def main(page: ft.Page):
             page.update()
         except e:
             page.banner.bgcolor = 'red'
-            page.banner.leading = ft.Icon(ft.icons.ERROR_OUTLINED, color=ft.colors.RED_200, size= 40)
+            page.banner.leading = ft.Icon(ft.icons.ERROR_OUTLINED, color=ft.colors.AMBER_200, size= 40)
             page.banner.content = ft.Text(f'Desculpe houve o erro {e}')
             page.banner.open = True
             page.update()
@@ -64,22 +64,46 @@ def main(page: ft.Page):
             page.update()
         except e:
             page.banner.bgcolor = 'red'
-            page.banner.leading = ft.Icon(ft.icons.ERROR_OUTLINED, color=ft.colors.RED_200, size= 40)
+            page.banner.leading = ft.Icon(ft.icons.ERROR_OUTLINED, color=ft.colors.AMBER_200, size= 40)
             page.banner.content = ft.Text(f'Desculpe houve o erro {e}')
             page.banner.open = True
             page.update()
 
     page.banner = ft.Banner(
         actions=[
-            ft.TextButton('Ok', on_click=close_banner)
-        ]
-    )
+            ft.TextButton('Ok', on_click=close_banner, style=ft.ButtonStyle(
+                color={
+                    ft.MaterialState.DEFAULT: ft.colors.BLACK,
+                },
+            ))
+        ])
 
 
-
-    text = ft.Text('Escolha uma opção')
-    btnCryp = ft.FilledButton('Cryptografar',on_click=cryptografando)
-    btnDescrypt = ft.FilledButton('Descryptografar', on_click=descryptografando)
+    text = ft.Text('Escolha uma opção', size=20)
+    btnCryp = ft.FilledButton('Cryptografar',on_click=cryptografando, style=ft.ButtonStyle(
+        bgcolor={
+            ft.MaterialState.HOVERED: ft.colors.GREEN_ACCENT_400,
+            ft.MaterialState.FOCUSED: ft.colors.GREEN_ACCENT_200,
+            ft.MaterialState.DEFAULT: ft.colors.GREEN_ACCENT_700,
+        },
+        color={
+            
+            ft.MaterialState.DEFAULT: ft.colors.BLACK,
+        }
+        
+        ))
+    btnDescrypt = ft.FilledButton('Descryptografar', on_click=descryptografando, style=ft.ButtonStyle(
+        bgcolor={
+            ft.MaterialState.HOVERED: ft.colors.GREEN_ACCENT_400,
+            ft.MaterialState.FOCUSED: ft.colors.GREEN_ACCENT_200,
+            ft.MaterialState.DEFAULT: ft.colors.GREEN_ACCENT_700,
+        },
+        color={
+            
+            ft.MaterialState.DEFAULT: ft.colors.BLACK,
+        }
+        
+        ))
     
     page.add(
         text,
